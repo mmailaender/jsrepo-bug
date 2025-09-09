@@ -1,0 +1,13 @@
+{
+	"$schema": "https://unpkg.com/jsrepo@2.4.5/schemas/project-config.json",
+	"repos": ["@auth/svelte@0.0.3"],
+	"includeTests": false,
+	"includeDocs": false,
+	"watermark": true,
+	"formatter": "prettier",
+	"configFiles": {},
+	"paths": {
+		"*": "./src",
+		"lib": "./src/lib"
+	}
+}

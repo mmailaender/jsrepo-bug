@@ -1,0 +1,139 @@
+<!--
+	Installed from @auth/svelte@0.0.3
+-->
+
+<script lang="ts">
+	// Primitives
+	import { toast } from 'svelte-sonner';
+
+	// API
+	import { useQuery } from 'convex-svelte';
+	import { api } from '../../../convex/_generated/api';
+	import { authClient } from '../../auth/api/auth-client';
+
+	// API Types
+	type Role = typeof authClient.$Infer.Member.role;
+	import type { FunctionReturnType } from 'convex/server';
+	type ActiveOrganizationResponse = FunctionReturnType<
+		typeof api.organizations.queries.getActiveOrganization
+	>;
+
+	// State
+	let emailInput: string = $state('');
+	let selectedRole: Role = $state('member');
+	let isProcessing: boolean = $state(false);
+
+	// Props
+	let {
+		onSuccess,
+		initialData
+	}: { onSuccess?: () => void; initialData?: { activeOrganization?: ActiveOrganizationResponse } } =
+		$props();
+
+	// Queries
+	const activeOrganizationResponse = useQuery(
+		api.organizations.queries.getActiveOrganization,
+		{},
+		{ initialData: initialData?.activeOrganization }
+	);
+	const activeOrganization = $derived(activeOrganizationResponse.data);
+
+	/**
+	 * Handles the submission of the invitation form
+	 */
+	async function handleInvite(event: SubmitEvent): Promise<void> {
+		event.preventDefault();
+		if (isProcessing) return;
+		isProcessing = true;
+
+		const emails = emailInput
+			.replace(/[,;\s]+/g, ',')
+			.split(',')
+			.map((email) => email.trim())
+			.filter((email) => email.length > 0);
+
+		if (emails.length === 0) {
+			toast.error('Please enter at least one email address');
+			isProcessing = false;
+			return;
+		}
+
+		if (!activeOrganization?.id) {
+			toast.error('No active organization found');
+			isProcessing = false;
+			return;
+		}
+
+		const results = [];
+
+		// Send invitations one by one
+		for (const email of emails) {
+			const { data, error } = await authClient.organization.inviteMember({
+				email,
+				role: selectedRole,
+				organizationId: activeOrganization.id,
+				resend: true
+			});
+
+			results.push({
+				email,
+				success: !error,
+				data,
+				error
+			});
+		}
+
+		const successful = results.filter((r) => r.success);
+		const failed = results.filter((r) => !r.success);
+
+		if (successful.length > 0) {
+			const msg = `Sent ${successful.length} invitation(s) to: ${successful.map((r) => r.email).join(', ')}`;
+			toast.success(msg);
+			emailInput = '';
+			if (onSuccess) {
+				onSuccess();
+			}
+		}
+
+		if (failed.length > 0) {
+			const msg = `Failed to send invitation(s) to: ${failed.map((r) => r.email).join(', ')}`;
+			toast.error(msg);
+		}
+
+		isProcessing = false;
+	}
+</script>
+
+<form onsubmit={handleInvite} class="flex flex-col gap-4">
+	<div class="flex flex-col gap-4">
+		<div class="flex flex-col">
+			<label>
+				<span class="label">Role</span>
+				<select bind:value={selectedRole} class="select w-full cursor-pointer">
+					<option value="member">Member</option>
+					<option value="admin">Admin</option>
+				</select>
+			</label>
+		</div>
+		<div class="flex flex-col gap-2">
+			<label>
+				<span class="label">Email(s)</span>
+				<textarea
+					bind:value={emailInput}
+					placeholder="example@email.com, example2@email.com"
+					class="textarea min-h-24 grow"
+					required
+				></textarea>
+			</label>
+			<p class="text-surface-600-400 px-1 text-xs">
+				You can invite multiple people by separating email addresses with commas, semicolons, or
+				spaces.
+			</p>
+		</div>
+		<div class="flex justify-end gap-2 pt-6 md:flex-row">
+			<button type="submit" class="btn preset-filled-primary-500" disabled={isProcessing}>
+				{isProcessing ? 'Sending...' : 'Send Invitations'}
+			</button>
+		</div>
+	</div>
+</form>
