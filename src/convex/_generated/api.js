@@ -1,7 +1,3 @@
-/*
-	Installed from @auth/svelte@0.0.3
-*/
-
 /* eslint-disable */
 /**
  * Generated `api` utility.
@@ -12,7 +8,7 @@
  * @module
  */
 
-import { anyApi, componentsGeneric } from 'convex/server';
+import { anyApi, componentsGeneric } from "convex/server";
 
 /**
  * A utility for referencing Convex functions in your app's API.

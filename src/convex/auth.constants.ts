@@ -4,7 +4,7 @@
 
 export const AUTH_CONSTANTS = {
 	providers: {
-		github: true,
+		github: false,
 		google: false,
 		facebook: false,
 		keypass: false,
