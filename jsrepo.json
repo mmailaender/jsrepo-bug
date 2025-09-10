@@ -1,6 +1,6 @@
 {
-	"$schema": "https://unpkg.com/jsrepo@2.4.5/schemas/project-config.json",
-	"repos": ["@auth/svelte@0.0.3"],
+	"$schema": "https://unpkg.com/jsrepo@2.4.7/schemas/project-config.json",
+	"repos": ["@auth/svelte@latest"],
 	"includeTests": false,
 	"includeDocs": false,
 	"watermark": true,

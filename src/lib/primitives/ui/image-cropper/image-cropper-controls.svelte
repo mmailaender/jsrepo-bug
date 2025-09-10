@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -17,7 +17,7 @@
 <div
 	{...rest}
 	bind:this={ref}
-	class={cn('flex w-full place-items-center justify-center gap-2', className)}
+	class={cn('flex w-full items-center justify-end gap-2  pt-3', className)}
 >
 	{@render children?.()}
 </div>

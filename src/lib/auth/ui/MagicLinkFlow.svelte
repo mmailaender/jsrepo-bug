@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -53,6 +53,15 @@
 				const emailData = await client.action(api.users.actions.checkEmailAvailabilityAndValidity, {
 					email
 				});
+				if (!emailData.valid) {
+					toast.error(emailData.reason || 'Please enter a valid email address.');
+					onSubmittingChange(false);
+					onAutoSendChange?.(false);
+					// Reset refs so user can go back and correct the email
+					linkSentRef.current = false;
+					emailChecked = false;
+					return;
+				}
 				mode = emailData.exists ? 'login' : 'register';
 				emailChecked = true;
 
@@ -148,25 +157,26 @@
 	}
 </script>
 
-<form onsubmit={handleSubmit} class="flex flex-col gap-4">
+<form onsubmit={handleSubmit} autocomplete="off" class="flex flex-col gap-4">
 	<div class="flex flex-col gap-2">
-		<label class="text-surface-950-50 text-sm font-medium" for="email">Email</label>
+		<label class="label" for="email">Email</label>
 		<input
 			type="email"
 			value={email}
 			disabled
-			class="input preset-filled-surface-200 cursor-not-allowed opacity-60"
+			class="preset-filled-surface-200 input cursor-not-allowed opacity-60"
 		/>
 	</div>
 
 	{#if mode === 'register' && emailChecked}
-		<div class="flex flex-col gap-2">
-			<label class="text-surface-950-50 text-sm font-medium" for="name">Full Name</label>
+		<div class="flex flex-col">
+			<label class="label" for="name">Full Name</label>
 			<input
 				type="text"
 				bind:value={name}
-				class="input preset-filled-surface-200"
+				class="preset-filled-surface-200 input"
 				placeholder="Enter your full name"
+				autocomplete="name"
 				required
 				disabled={submitting || linkSent}
 			/>
@@ -174,7 +184,7 @@
 	{/if}
 
 	{#if mode === 'register' && emailChecked}
-		<button type="submit" class="btn preset-filled w-full" disabled={submitting || !name.trim()}>
+		<button type="submit" class="btn w-full preset-filled" disabled={submitting || !name.trim()}>
 			{#if submitting}
 				<div class="flex items-center gap-2">
 					<div
@@ -194,12 +204,12 @@
 				<div
 					class="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
 				></div>
-				<span class="text-surface-600-400 text-sm">Checking email...</span>
+				<span class="text-sm text-surface-600-400">Checking email...</span>
 			</div>
 		</div>
 	{/if}
 
-	<button type="button" class="anchor text-center text-sm" onclick={onBack} disabled={submitting}>
+	<button type="button" class="btn" onclick={onBack} disabled={submitting}>
 		Use a different email
 	</button>
 </form>

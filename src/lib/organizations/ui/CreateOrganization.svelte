@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -199,39 +199,41 @@
 <!-- Show loading state -->
 {#if isLoading}
 	<div class="mx-auto w-full max-w-md animate-pulse">
-		<div class="placeholder mb-4 h-8 w-full"></div>
-		<div class="placeholder mb-4 h-40 w-full"></div>
-		<div class="placeholder mb-2 h-10 w-full"></div>
-		<div class="placeholder h-10 w-full"></div>
+		<div class="mb-4 h-8 placeholder w-full"></div>
+		<div class="mb-4 h-40 placeholder w-full"></div>
+		<div class="mb-2 h-10 placeholder w-full"></div>
+		<div class="h-10 placeholder w-full"></div>
 	</div>
 
 	<!-- Show message for unauthenticated users -->
 {:else if !isAuthenticated}
 	<div
-		class="border-surface-200-800 rounded-container mx-auto w-full max-w-md border p-6 text-center"
+		class="mx-auto w-full max-w-md rounded-container border border-surface-200-800 p-6 text-center"
 	>
-		<LogIn class="text-surface-400-600 mx-auto mb-4 size-10" />
+		<LogIn class="mx-auto mb-4 size-10 text-surface-400-600" />
 		<h2 class="mb-2 text-xl font-semibold">Authentication Required</h2>
-		<p class="text-surface-600-400 mb-4">Please sign in to create an organization</p>
+		<p class="mb-4 text-surface-600-400">Please sign in to create an organization</p>
 	</div>
 
 	<!-- Show the form for authenticated users -->
 {:else}
-	<form onsubmit={handleSubmit} class="mx-auto w-full">
+	<form onsubmit={handleSubmit} class="mx-auto w-full px-6 pb-6">
 		<div class="my-6">
 			<ImageCropper.Root bind:src={cropSrc} accept="image/*" onCropped={handleCropped}>
 				<ImageCropper.UploadTrigger>
 					<div
-						class="rounded-container relative size-20 cursor-pointer transition-all duration-200 hover:brightness-125 hover:dark:brightness-75"
+						class="relative size-20 cursor-pointer rounded-container transition-all duration-200"
 					>
-						<Avatar.Root class="rounded-container size-20">
+						<Avatar.Root class="size-20 rounded-container">
 							<Avatar.Image src={logo} alt={name.length > 0 ? name : 'My Organization'} />
-							<Avatar.Fallback class="bg-surface-400-600 rounded-container">
-								<Building2 class="size-10" />
+							<Avatar.Fallback
+								class="rounded-container bg-surface-300-700 duration-150 ease-in-out hover:bg-surface-400-600/80"
+							>
+								<Building2 class="size-10 text-surface-700-300" />
 							</Avatar.Fallback>
 						</Avatar.Root>
 						<div
-							class="badge-icon preset-filled-surface-300-700 border-surface-200-800 absolute -right-1.5 -bottom-1.5 size-3 rounded-full border-2"
+							class="absolute -right-1.5 -bottom-1.5 badge-icon size-3 rounded-full preset-filled-surface-300-700 ring-4 ring-surface-50-950 dark:ring-surface-100-900"
 						>
 							<Pencil class="size-4" />
 						</div>
@@ -247,8 +249,8 @@
 			</ImageCropper.Root>
 		</div>
 
-		<div class="flex flex-col gap-2">
-			<div class="mb-4">
+		<div class="flex flex-col gap-5">
+			<div>
 				<label for="name" class="label">Name</label>
 				<input
 					type="text"
@@ -260,7 +262,7 @@
 					placeholder="My Organization..."
 				/>
 			</div>
-			<div class="mb-4">
+			<div>
 				<label for="slug" class="label">Slug URL</label>
 				<input
 					type="text"
@@ -279,3 +281,9 @@
 		</div>
 	</form>
 {/if}
+
+<style>
+	:global(.svelte-easy-crop-area) {
+		border-radius: var(--radius-container);
+	}
+</style>

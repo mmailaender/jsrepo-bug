@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -13,10 +13,10 @@
 	bind:ref
 	data-slot="tabs-list"
 	class={cn(
-		'text-surface-700-300 rounded-base bg-transparent',
-		'inline-flex items-center justify-center',
+		'rounded-base bg-transparent text-surface-700-300',
+		'inline-flex items-center justify-center gap-1',
 		'data-[orientation=horizontal]:w-fit',
-		'h-full gap-1 data-[orientation=vertical]:w-full data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start',
+		'data-[orientation=vertical]:w-full data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start',
 		className
 	)}
 	{...restProps}

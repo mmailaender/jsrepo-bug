@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -15,6 +15,6 @@
 <ArkDialogDescription
 	bind:ref
 	data-slot="dialog-description"
-	class={cn('text-surface-600-400 w-full text-left text-sm', className)}
+	class={cn('w-full text-left text-sm text-surface-600-400', className)}
 	{...restProps}
 />

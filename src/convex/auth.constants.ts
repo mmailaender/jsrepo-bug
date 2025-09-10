@@ -4,13 +4,7 @@
 
 export const AUTH_CONSTANTS = {
 	providers: {
-		github: false,
-		google: false,
-		facebook: false,
-		keypass: false,
-		password: true,
-		emailOTP: true,
-		magicLink: true
+		password: true
 	},
 	validateEmails: true,
 	organizations: true,

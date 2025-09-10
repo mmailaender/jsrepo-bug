@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -37,20 +37,20 @@
 
 <Dialog.Root bind:open={deleteDialogOpen}>
 	<Dialog.Trigger
-		class="btn btn-sm preset-faded-surface-50-950 text-surface-600-400 hover:bg-error-300-700 hover:text-error-950-50 rounded-base justify-between gap-1 text-sm"
+		class="preset-faded-surface-50-950 btn justify-between gap-1 rounded-base btn-sm text-sm text-surface-600-400 hover:bg-error-300-700 hover:text-error-950-50"
 		>Delete account</Dialog.Trigger
 	>
 	<Dialog.Content class="md:max-w-108">
 		<Dialog.Header>
 			<Dialog.Title>Delete your account</Dialog.Title>
-			<Dialog.Description class="text-surface-700-300">
+			<Dialog.Description class="px-6 text-surface-700-300">
 				Are you sure you want to delete your account? All of your data will be permanently deleted.
 			</Dialog.Description>
 		</Dialog.Header>
-		<Dialog.Footer>
+		<Dialog.Footer class="w-full p-6">
 			<Dialog.Close class="btn preset-tonal">Cancel</Dialog.Close>
 			<button type="button" class="btn preset-filled-error-500" onclick={handleConfirm}>
-				Confirm
+				Delete
 			</button>
 		</Dialog.Footer>
 	</Dialog.Content>

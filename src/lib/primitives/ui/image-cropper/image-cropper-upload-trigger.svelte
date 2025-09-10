@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -11,6 +11,20 @@
 	const triggerState = useImageCropperTrigger();
 </script>
 
-<label {...rest} bind:this={ref} for={triggerState.rootState.id} class="hover:cursor-pointer">
+<label
+	bind:this={ref}
+	for={triggerState.rootState.id}
+	role="button"
+	tabindex="0"
+	class="hover:cursor-pointer"
+	onkeydown={(e) => {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			const input = document.getElementById(triggerState.rootState.id) as HTMLInputElement | null;
+			input?.click();
+		}
+	}}
+	{...rest}
+>
 	{@render children?.()}
 </label>

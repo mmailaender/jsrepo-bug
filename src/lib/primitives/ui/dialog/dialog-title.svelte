@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -13,6 +13,6 @@
 	bind:ref
 	data-scope="dialog"
 	data-part="title"
-	class={cn('pb-6 text-left text-xl leading-none tracking-tight', className)}
+	class={cn('p-6 text-left h5 leading-none tracking-tight', className)}
 	{...restProps}
 />

@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -80,7 +80,7 @@
 {#if isOwner && activeOrganization}
 	<Dialog.Root bind:open={dialogOpen}>
 		<Dialog.Trigger
-			class="btn btn-sm preset-faded-surface-50-950 text-surface-600-400 hover:bg-error-300-700 hover:text-error-950-50 w-fit justify-between gap-1 text-sm"
+			class="preset-faded-surface-50-950 btn w-fit justify-between gap-1 btn-sm text-sm text-surface-600-400 hover:bg-error-300-700 hover:text-error-950-50"
 			>Delete organization</Dialog.Trigger
 		>
 
@@ -90,23 +90,21 @@
 			</Dialog.Header>
 
 			<article>
-				<div class="text-surface-700-300 space-y-3 text-sm">
+				<div class="space-y-3 px-6 text-sm text-surface-700-300">
 					<p>Are you sure you want to delete this organization?</p>
 					<div
-						class="bg-surface-100-900 border-surface-200-800 rounded-container border p-3 text-center"
+						class="rounded-container border border-surface-200-800 bg-surface-200-800 p-3 text-center"
 					>
-						<span class="text-surface-800-200 text-base font-semibold"
-							>{activeOrganization.name}</span
-						>
+						<span class="font-semibold text-surface-800-200">{activeOrganization.name}</span>
 					</div>
 					<p>All organization data will be permanently deleted and cannot be recovered.</p>
 				</div>
 			</article>
 
-			<Dialog.Footer>
+			<Dialog.Footer class="w-full p-6">
 				<Dialog.Close class="btn preset-tonal">Cancel</Dialog.Close>
 				<button type="button" class="btn preset-filled-error-500" onclick={handleConfirm}>
-					Confirm
+					Delete
 				</button>
 			</Dialog.Footer>
 		</Dialog.Content>

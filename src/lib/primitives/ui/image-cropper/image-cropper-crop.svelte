@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -31,6 +31,6 @@
 		cropState.onclick();
 	}}
 >
-	<CropIcon />
+	<CropIcon class="size-4" />
 	<span>Crop</span>
 </button>

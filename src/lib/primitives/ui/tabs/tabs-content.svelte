@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -15,7 +15,7 @@
 	class={cn(
 		'outline-none',
 		'data-[orientation=horizontal]:flex-1',
-		'w-full data-[orientation=vertical]:p-6',
+		'w-full data-[orientation=vertical]:p-8 data-[orientation=vertical]:pt-6 ',
 		className
 	)}
 	{...restProps}

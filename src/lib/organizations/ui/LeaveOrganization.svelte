@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -106,7 +106,7 @@
 {#if activeOrganization && members && members.length > 1}
 	<Dialog.Root bind:open={isOpen}>
 		<Dialog.Trigger
-			class="btn btn-sm preset-faded-surface-50-950 text-surface-600-400 hover:bg-error-300-700 hover:text-error-950-50 w-fit justify-between gap-1 text-sm"
+			class="preset-faded-surface-50-950 btn w-fit justify-between gap-1 btn-sm text-sm text-surface-600-400 hover:bg-error-300-700 hover:text-error-950-50"
 		>
 			Leave organization
 		</Dialog.Trigger>
@@ -147,7 +147,7 @@
 				<button class="btn preset-tonal" onclick={() => (isOpen = false)}> Cancel </button>
 				<button
 					type="button"
-					class="btn bg-error-500 hover:bg-error-600 text-white"
+					class="btn bg-error-500 text-white hover:bg-error-600"
 					onclick={handleLeaveOrganization}
 					disabled={roles.hasOwnerRole && !selectedSuccessor}
 				>

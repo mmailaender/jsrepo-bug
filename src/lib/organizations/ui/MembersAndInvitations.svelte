@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -70,19 +70,19 @@
 
 <Tabs.Root value="members">
 	<div
-		class="border-surface-300-700 flex w-full flex-row justify-between border-b pb-6 align-middle"
+		class="flex w-full flex-row justify-between border-b border-surface-300-700 pb-6 align-middle"
 	>
 		<Tabs.List class="flex-1 md:flex-initial">
 			<Tabs.Trigger value="members" class="flex-1 gap-2 md:flex-initial">
 				Members
-				<span class="badge preset-filled-surface-300-700 size-6 rounded-full">
+				<span class="badge size-6 rounded-full preset-filled-surface-300-700">
 					{members && `${members.length}`}
 				</span>
 			</Tabs.Trigger>
 			{#if isOwnerOrAdmin}
 				<Tabs.Trigger value="invitations" class="flex-1 gap-2 md:flex-initial">
 					Invitations
-					<span class="badge preset-filled-surface-300-700 size-6 rounded-full">
+					<span class="badge size-6 rounded-full preset-filled-surface-300-700">
 						{invitationList && `${invitationList.filter((i) => i.status === 'pending').length}`}
 					</span>
 				</Tabs.Trigger>
@@ -91,7 +91,7 @@
 		{#if isOwnerOrAdmin}
 			<Dialog.Root bind:open={inviteMembersDialogOpen}>
 				<Dialog.Trigger
-					class="btn preset-filled-primary-500 hidden h-10 items-center gap-2 text-sm md:flex"
+					class="btn hidden h-10 items-center gap-2 preset-filled-primary-500 text-sm md:flex"
 				>
 					<Plus class="size-5" />
 					<span>Invite members</span>
@@ -106,7 +106,7 @@
 			</Dialog.Root>
 			<Drawer.Root bind:open={inviteMembersDrawerOpen}>
 				<Drawer.Trigger
-					class="btn preset-filled-primary-500 absolute right-4 bottom-4 z-10 h-10 text-sm md:hidden"
+					class="absolute right-4 bottom-4 z-10 btn h-10 preset-filled-primary-500 text-sm md:hidden"
 				>
 					<Plus class="size-5" /> Invite members
 				</Drawer.Trigger>

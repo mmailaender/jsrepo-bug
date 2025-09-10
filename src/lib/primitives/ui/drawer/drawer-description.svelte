@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -15,6 +15,6 @@
 <ArkDialogDescription
 	bind:ref
 	data-scope="drawer"
-	class={cn('text-surface-600-400 text-sm', className)}
+	class={cn('text-sm text-surface-600-400', className)}
 	{...restProps}
 />

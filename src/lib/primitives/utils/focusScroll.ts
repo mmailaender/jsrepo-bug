@@ -1,5 +1,5 @@
 /*
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 */
 
 // Keyboard-aware, centered scroll-into-view utilities

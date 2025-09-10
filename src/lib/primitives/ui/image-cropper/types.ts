@@ -1,5 +1,5 @@
 /*
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 */
 
 import type { AvatarRootProps, DialogContentProps } from '@ark-ui/svelte';

@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -104,7 +104,7 @@
 	}
 </script>
 
-<form onsubmit={handleInvite} class="flex flex-col gap-4">
+<form onsubmit={handleInvite} class="flex flex-col gap-4 sm:p-6">
 	<div class="flex flex-col gap-4">
 		<div class="flex flex-col">
 			<label>
@@ -125,7 +125,7 @@
 					required
 				></textarea>
 			</label>
-			<p class="text-surface-600-400 px-1 text-xs">
+			<p class="px-1 text-xs text-surface-600-400">
 				You can invite multiple people by separating email addresses with commas, semicolons, or
 				spaces.
 			</p>

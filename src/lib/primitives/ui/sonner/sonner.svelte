@@ -1,5 +1,5 @@
 <!--
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 -->
 
 <script lang="ts">
@@ -36,10 +36,10 @@
 		<Loader2 class="flex-shrink-0 animate-spin" />
 	{/snippet}
 	{#snippet successIcon()}
-		<CircleCheck class="text-success-500 flex-shrink-0" />
+		<CircleCheck class="flex-shrink-0 text-success-500" />
 	{/snippet}
 	{#snippet errorIcon()}
-		<CircleX class="text-error-500 flex-shrink-0" />
+		<CircleX class="flex-shrink-0 text-error-500" />
 	{/snippet}
 	{#snippet infoIcon()}
 		<Info class="flex-shrink-0" />

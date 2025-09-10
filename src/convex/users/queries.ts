@@ -1,5 +1,5 @@
 /*
-	Installed from @auth/svelte@0.0.3
+	Installed from @auth/svelte@latest
 */
 
 import { query } from '../_generated/server';
